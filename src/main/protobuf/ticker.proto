@@ -1,0 +1,48 @@
+syntax = "proto3";
+package ticker;
+
+
+
+
+option java_multiple_files = false;
+
+
+service TickerService {
+  // Monitor a symbol
+  // METHOD           PARAMS
+  rpc MonitorSymbol (TickerSymbol)    returns (stream StockValue);
+  rpc Greeting(HelloRequest) returns (HelloReply){}
+
+}
+
+
+service GreeterService{
+  rpc Greeting2(HelloRequest) returns (HelloReply);
+}
+
+
+message TickerSymbol {
+  string name = 1;
+}
+message StockValue {
+  string name = 1;
+  uint32 value = 2;
+}
+
+// The request message containing the user's name.
+message HelloRequest {
+  string name = 1;
+}
+
+
+// The response message containing the greetings
+message HelloReply {
+  string mes = 1;
+}
+
+message NullableString {
+  oneof kind {
+
+    string data = 2;
+  }
+}
